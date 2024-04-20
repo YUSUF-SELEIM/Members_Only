@@ -1,39 +1,27 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var dotenv = require('dotenv');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import route from "./routes/route.js"; 
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
-var app = express();
 
+const app = express();
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// middleware
+app.use(express.json());
+app.use(cors());
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// connect to MongoDB
+mongoose
+  .connect("mongodb+srv://yusufabdelfattah207:xRcBV80rikJQvLaA@cluster0.jb173jl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log(err));
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+// routes for api endpoints
+app.use("/api", route);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
 });
-
-module.exports = app;
