@@ -1,5 +1,4 @@
 'use client';
-import React from "react";
 import { Navbar as NextUINavbar, NavbarBrand, NavbarContent, NavbarItem, Link, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar, useDisclosure } from "@nextui-org/react";
 import NextLink from "next/link";
 import { ThemeSwitch } from "@/components/theme-switch";
@@ -11,10 +10,10 @@ import { Button } from "@nextui-org/button";
 import { Login } from "@/components/loginModal";
 import { Signup } from "@/components/signupModal";
 
-export const Navbar = () => {
+
+export const Navbar = ({ setIsLoggedIn }: { setIsLoggedIn: (isLoggedIn: boolean) => void; }) => {
     const { onOpen: onLoginOpen, isOpen: isLoginOpen, onOpenChange: onLoginOpenChange } = useDisclosure();
     const { onOpen: onSignupOpen, isOpen: isSignupOpen, onOpenChange: onSignupOpenChange } = useDisclosure();
-    
     return (
         <NextUINavbar className="justify-center w-full">
             <NavbarContent className="flex justify-between w-full gap-4">
@@ -37,8 +36,7 @@ export const Navbar = () => {
                     <Button onPress={onLoginOpen} color="primary" variant="ghost">
                         Login
                     </Button>
-                    <Login isOpen={isLoginOpen} onOpenChange={onLoginOpenChange} />
-
+                    <Login setIsLoggedIn={setIsLoggedIn} isOpen={isLoginOpen} onOpenChange={onLoginOpenChange} />
                 </NavbarItem>
                 <NavbarItem>
                     <Button onPress={onSignupOpen}  color="primary" variant="ghost">
