@@ -2,10 +2,8 @@ import "@/styles/globals.css";
 import { Metadata } from "next";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
-import { Navbar } from "@/components/navbar";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-import Footer from "@/components/footer";
+import Home from "./page";
 
 export const metadata: Metadata = {
 
@@ -20,11 +18,7 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function RootLayout({}) {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
@@ -36,12 +30,10 @@ export default function RootLayout({
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col w-full h-screen">
-						<Navbar />
-						<main className="container flex-grow w-full px-6 pt-16">
-							{children}
+						<main className="container flex-grow w-full px-6 pt-16">						
+							<Home>
+							</Home>
 						</main>
-						<Footer/>
-			
 					</div>
 				</Providers>
 			</body>
