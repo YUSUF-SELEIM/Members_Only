@@ -2,7 +2,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Spinner } from "@nextui-org/react";
 import { CheckCircle } from 'react-feather'; // Importing the green tick icon
-import { Ultra } from 'next/font/google';
 
 export const Signup = ({ isOpen, onOpenChange }: { isOpen: boolean, onOpenChange: (isOpen: boolean) => void }) => {
   const [name, setName] = useState('');
