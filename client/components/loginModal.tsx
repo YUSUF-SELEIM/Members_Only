@@ -24,6 +24,7 @@ export const Login = ({ setIsLoggedIn, isOpen, onOpenChange }: { setIsLoggedIn: 
           headers: {
             'Content-Type': 'application/json',
           },
+          withCredentials: true,
         }
       );
 
