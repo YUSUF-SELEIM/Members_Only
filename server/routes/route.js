@@ -17,12 +17,13 @@ router.use(
     store: MongoStore.create({ mongoUrl: 'mongodb+srv://yusufabdelfattah207:xRcBV80rikJQvLaA@cluster0.jb173jl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0' }),
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-      httpOnly: true,
-      secure: false,
+      httpOnly: true, // Set to true for improved security
+      secure: false, // Set to true in production for HTTPS-only
+      sameSite: 'lax', // Set to 'lax' or 'strict' in production
     },
-    
   })
 );
+
 router.use(passport.session());
 router.use(express.urlencoded({ extended: false }));
 
