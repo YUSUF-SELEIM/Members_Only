@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({}) {
+export default function RootLayout() {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
@@ -29,12 +29,10 @@ export default function RootLayout({}) {
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="relative flex flex-col w-full h-screen">
-						<main className="container flex-grow w-full px-6 pt-16">						
-							<Home>
-							</Home>
-						</main>
-					</div>
+					<main className="relative flex flex-col w-full h-screen">
+						<Home>
+						</Home>
+					</main>
 				</Providers>
 			</body>
 		</html>
