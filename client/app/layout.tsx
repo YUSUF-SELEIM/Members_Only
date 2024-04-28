@@ -3,8 +3,6 @@ import { Metadata } from "next";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
-import Home from "./page";
-import Link from "next/link";
 
 export const metadata: Metadata = {
 
