@@ -138,4 +138,25 @@ router.get('/user', async (req, res) => {
   }
 });
 
+router.post("/log-out", (req, res, next) => {
+  console.log("Logging out");
+  req.logout((err) => {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    
+    // Clear the session cookie
+    res.clearCookie('connect.sid', { 
+    httpOnly: true, // Set to true for improved security
+    secure: false, // Set to true in production for HTTPS-only
+    sameSite: 'lax', // Set to 'lax' or 'strict' in production });
+  });
+    // Respond with a success message or redirect to another page
+    res.status(200).send({ message: 'Logout successful' });
+  });
+});
+
+
+
 export default router;
