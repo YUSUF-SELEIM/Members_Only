@@ -2,11 +2,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Spinner } from "@nextui-org/react";
 
-export const Login = ({ setIsLoggedIn, isOpen, onOpenChange }: { setIsLoggedIn: (isLoggedIn: boolean) => void; isOpen: boolean; onOpenChange: (isOpen: boolean) => void }) => {
+export const Login = ({setIsLoggedIn, isOpen, onOpenChange }: {setIsLoggedIn: (isLoggedIn: boolean) => void; isOpen: boolean; onOpenChange: (isOpen: boolean) => void }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [emailErrors, setEmailErrors] = useState([] as string[]);
+  const [usernameErrors, setUsernameErrors] = useState([] as string[]);
   const [passwordErrors, setPasswordErrors] = useState([] as string[]);
 
 
@@ -39,13 +39,13 @@ export const Login = ({ setIsLoggedIn, isOpen, onOpenChange }: { setIsLoggedIn: 
       console.error('Error logging in:', error);
       if ((error as any).response && (error as any).response.data && (error as any).response.data.errors) {
         const { errors } = (error as any).response.data;
-        setEmailErrors([]);
+        setUsernameErrors([]);
         setPasswordErrors([]);
 
         errors.forEach((err: any) => {
           switch (err.path) {
             case 'username':
-              setEmailErrors(prevErrors => [...prevErrors, err.msg]);
+              setUsernameErrors(prevErrors => [...prevErrors, err.msg]);
               break;
             case 'password':
               setPasswordErrors(prevErrors => [...prevErrors, err.msg]);
@@ -63,7 +63,7 @@ export const Login = ({ setIsLoggedIn, isOpen, onOpenChange }: { setIsLoggedIn: 
   const handleInputFocus = (fieldName: string) => {
     switch (fieldName) {
       case 'username':
-        setEmailErrors([] as string[]);
+        setUsernameErrors([] as string[]);
         break;
       case 'password':
         setPasswordErrors([] as string[]);
@@ -72,23 +72,36 @@ export const Login = ({ setIsLoggedIn, isOpen, onOpenChange }: { setIsLoggedIn: 
         break;
     }
   };
+  const handleModalOpenChange = (isOpen: boolean) => {
+    onOpenChange(isOpen);
+    // Set isSignedIn to false when modal is closed
+    if (!isOpen) {
+      setIsLoggedIn(false);
+      clearForm();
+    }
+  };
+  const clearForm = () => {
+    setUsername('');
+    setPassword('');
+    setUsernameErrors([]);
+    setPasswordErrors([]);
+  };
   return (
     <>
       <Modal
         isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        placement="top-center"
-        className='max-h-[35rem] min-h-[28rem]'
+        onOpenChange={handleModalOpenChange}
+        placement="center"
+        backdrop='blur'
 
       >
         <ModalContent>
           <div className='flex flex-col justify-center h-full'>
-
             {(isLoading ?
-              <Spinner className='my-[50%]' size="lg" /> :
+              <Spinner className='my-[32%]' size="lg" /> :
               <form onSubmit={handleSubmit}>
                 <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
-                <ModalBody className='flex flex-col gap-4'>
+                <ModalBody>
 
                   <div className="flex flex-col space-y-1">
                     <Input
@@ -101,7 +114,7 @@ export const Login = ({ setIsLoggedIn, isOpen, onOpenChange }: { setIsLoggedIn: 
                       onFocus={() => handleInputFocus('username')} // Clear email error on focus
                       required
                     />
-                    {emailErrors && <span className="flex flex-col ml-5 text-sm text-red-700">{emailErrors.map(error => (
+                    {usernameErrors && <span className="flex flex-col ml-5 text-sm text-red-700">{usernameErrors.map(error => (
                       <ul key={error} className=''>
                         <li className='list-disc'>{error}</li>
                       </ul>
