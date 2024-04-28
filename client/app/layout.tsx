@@ -4,6 +4,7 @@ import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
 import Home from "./page";
+import Link from "next/link";
 
 export const metadata: Metadata = {
 
@@ -18,20 +19,23 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout() {
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
 			<body
 				className={clsx(
-					"w-full min-h-screen bg-background font-sans antialiased",
+					"w-full bg-background font-sans antialiased",
 					fontSans.variable
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<main className="relative flex flex-col w-full h-screen">
-						<Home>
-						</Home>
+					<main className="flex-col w-full h-screen lex ">
+						{children}
 					</main>
 				</Providers>
 			</body>
