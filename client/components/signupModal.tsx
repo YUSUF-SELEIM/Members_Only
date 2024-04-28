@@ -117,8 +117,9 @@ export const Signup = ({ isOpen, onOpenChange }: { isOpen: boolean, onOpenChange
       <Modal
         isOpen={isOpen}
         onOpenChange={handleModalOpenChange}
-        placement="top-center"
+        placement="center"
         className='max-h-[35rem] min-h-[28rem]'
+        backdrop='blur'
       >
         <ModalContent>
           <div className='flex flex-col justify-center h-full'>
