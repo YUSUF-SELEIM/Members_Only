@@ -37,12 +37,22 @@ passport.use(
       const user = await User.findOne({ email: username });
       console.log("User is  ", user);
       if (!user) {
-          return done(null, false, { message: "Incorrect email" });
+          return done(null, false, {
+            errors: [
+              { type: 'field', value: '', msg: 'Incorrect email', path: 'username', location: 'body' },
+              // You can include other error objects here if needed
+            ]
+          });
       };
       const match = await bcrypt.compare(password, user.password);
   
       if (!match) {
-          return done(null, false, { message: "Incorrect password" });
+          return done(null, false, {
+            errors: [
+              { type: 'field', value: '', msg: 'Incorrect password', path: 'password', location: 'body' },
+              // You can include other error objects here if needed
+            ]
+          });
       };
       return done(null, user);
       } catch(err) {
@@ -83,8 +93,13 @@ router.post('/log-in', validateLogIn, (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' ,path: 'username'});
-    }
+      return res.status(401).json({
+        errors: [
+          { type: 'field', value: '', msg: 'Invalid email or password', path: 'username', location: 'body' },
+          // You can include other error objects here if needed
+        ]
+      });
+          }
     req.login(user, (err) => {
       if (err) {
         return next(err);
