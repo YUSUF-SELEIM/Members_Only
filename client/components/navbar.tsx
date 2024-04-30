@@ -6,13 +6,16 @@ import {
 } from "@/components/icons";
 import { Logo } from "@/components/icons";
 import axios from 'axios';
+import { Post } from "./postModal";
 
 
 export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: boolean; }) => {
+    const { onOpen, isOpen, onOpenChange } = useDisclosure();
+
     const handleLogout = async () => {
         try {
             // Make a POST request to logout endpoint
-            const response = await axios.post('http://localhost:3000/api/log-out', {
+            const response = await axios.delete('http://localhost:3000/api/log-out', {
                 withCredentials: true,
             });
 
@@ -61,12 +64,16 @@ export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: bo
                                 <p className="font-semibold">Signed in as</p>
                                 <p className="font-semibold">{userData?.email}</p>
                             </DropdownItem>
+                            <DropdownItem key="logout" color="success" onClick={onOpen}>
+                               New Post
+                            </DropdownItem>
                             <DropdownItem key="logout" color="danger" onClick={handleLogout}>
                                 Log Out
                             </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 )}
+                <Post isOpen={isOpen} onOpenChange={onOpenChange} />
             </NavbarContent>
         </NextUINavbar>
     );
