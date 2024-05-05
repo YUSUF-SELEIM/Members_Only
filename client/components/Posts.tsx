@@ -108,13 +108,13 @@ const Posts = () => {
                       description={post.creatorEmail}
                     />
                     <div className="text-xs italic">
-                      <p>Posted {getTimeAgo(post.dateCreated)}</p>
+                        <p>Posted {getTimeAgo(post.dateCreated)}</p>
                     </div>
                   </div>
                 </CardHeader>
                 <Divider />
                 <CardBody>
-                  <div dangerouslySetInnerHTML={{ __html: post.post }} />
+                  <div id='editor' dangerouslySetInnerHTML={{ __html: post.post }} />
                 </CardBody>
               </Card>
             ))}
