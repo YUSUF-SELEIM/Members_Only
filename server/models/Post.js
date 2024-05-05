@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
-  creator: {
+  creatorName: {
     type: String,
     required: true,
   },
-  title: {
+  creatorEmail: {
     type: String,
     required: true,
   },
