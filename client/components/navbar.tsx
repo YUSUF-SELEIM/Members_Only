@@ -39,7 +39,7 @@ export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: bo
                         <Logo />
                         <p className="font-bold text-inherit">MembersOnly</p>
                     </NextLink>
-                </NavbarBrand>  
+                </NavbarBrand>
                 <NavbarItem className="flex gap-2">
                     <Link isExternal href="" aria-label="Github">
                         <GithubIcon className="text-default-500" />
@@ -56,7 +56,7 @@ export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: bo
                                 color="secondary"
                                 name="Jason Hughes"
                                 size="sm"
-                                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                                src={`https://avatar.iran.liara.run/username?username=${userData.name}`}
                             />
                         </DropdownTrigger>
                         <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -65,7 +65,7 @@ export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: bo
                                 <p className="font-semibold">{userData?.email}</p>
                             </DropdownItem>
                             <DropdownItem key="logout" color="success" onClick={onOpen}>
-                               New Post
+                                New Post
                             </DropdownItem>
                             <DropdownItem key="logout" color="danger" onClick={handleLogout}>
                                 Log Out
@@ -73,7 +73,7 @@ export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: bo
                         </DropdownMenu>
                     </Dropdown>
                 )}
-                <Post isOpen={isOpen} onOpenChange={onOpenChange} />
+                <Post userData={userData} isOpen={isOpen} onOpenChange={onOpenChange} />
             </NavbarContent>
         </NextUINavbar>
     );
