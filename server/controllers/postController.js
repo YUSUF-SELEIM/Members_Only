@@ -1,10 +1,16 @@
 import Post from "../models/Post.js";
 import asyncHandler from "express-async-handler";
+import { io } from "../app.js";
 
-// retrieve messages from the database
+// Retrieve posts from the database
 export const getPosts = async (req, res) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().sort({ dateCreated: -1 });
+    // Emit serverTime event periodically
+    setInterval(() => {
+      io.emit("serverTime", { serverTime: new Date() });
+    }, 1000); // Emit every second
+
     console.log("Retrieved posts successfully");
     res.send(posts);
   } catch (error) {
@@ -12,22 +18,26 @@ export const getPosts = async (req, res) => {
     res.status(500).send({ error: "Failed to retrieve posts" });
   }
 };
-// save a new message to the database
+
+// Save a new post to the database
 export const savePost = asyncHandler(async (req, res, next) => {
-    //begin from here
   try {
-    const {post} = req.body;
-    console.log(req.body);
+    const { creatorName, creatorEmail, post } = req.body;
     const newPost = await Post.create({
-      creator :"author",
-      title :"title",
+      creatorName,
+      creatorEmail,
       post,
-      sendDate : new Date(),
+      dateCreated: new Date(),
     });
     console.log("Saved successfully");
-    res.status(201).send(newPost);
+
+    // Broadcast the new post to Socket.IO clients
+    io.emit("newPost", newPost);
+    console.log("Emitted new post");
+
+    res.status(200).send(newPost);
   } catch (error) {
-    console.error("Error saving POST:", error);
-    res.status(400).send({ error: "Failed to save POST" });
+    console.error("Error saving post:", error);
+    res.status(400).send({ error: "Failed to save post" });
   }
 });
