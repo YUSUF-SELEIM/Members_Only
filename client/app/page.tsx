@@ -19,7 +19,7 @@ export default function Home() {
 				// Set the request configuration
 				const config = {
 					method: 'get',
-					url: `http://localhost:3000/api/user/`,
+					url: 'http://localhost:3000/api/user/',
 					withCredentials: true, // Include credentials for session authentication
 				};
 

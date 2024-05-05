@@ -56,7 +56,7 @@ export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: bo
                                 color="secondary"
                                 name="Jason Hughes"
                                 size="sm"
-                                src={`https://avatar.iran.liara.run/username?username=${userData.name}`}
+                                src={`https://avatar.iran.liara.run/username?username=${userData?.name}`}
                             />
                         </DropdownTrigger>
                         <DropdownMenu aria-label="Profile Actions" variant="flat">
