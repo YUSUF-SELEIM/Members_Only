@@ -17,9 +17,9 @@ router.use(
     store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // 1 day
-      secure: true, // Set to true in production for HTTPS-only
-      sameSite: 'none', // Set to 'lax' or 'strict' in production
-      httpOnly: true, // Set to true for improved security
+      secure: false, // Set to true in production for HTTPS-only
+      sameSite: 'lax', // Set to 'lax' or 'strict' in production
+      httpOnly: false, // Set to true for improved security
 
     },
   })
