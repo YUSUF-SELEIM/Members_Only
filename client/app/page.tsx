@@ -65,7 +65,7 @@ export default function Home() {
 						<main className="flex flex-col items-center justify-center w-full h-full gap-4 md:flex-row ">
 							{!isLoggedIn && (
 								<div className="flex flex-col items-center justify-center space-y-4 mb-32 h-[calc(100dvh)] w-full md:h-full mt-32 space-y- md:mt-0">
-									<h1 className="text-4xl font-bold text-center">Welcome to MembersOnly</h1>
+									<h1 className="text-4xl font-bold text-center">Welcome to Members<span className='text-blue-700'>Only</span></h1>
 									<p className="text-lg text-center">
 										An exclusive community for members only
 										<br />
