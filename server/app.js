@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: 'http://localhost:3001', // Allow requests from this origin
+  origin: 'https://members-only-nu.vercel.app/', // Allow requests from this origin
   credentials: true, // Allow credentials (cookies) to be included
   allowedHeaders: ['Content-Type','Set-Cookie'], // Allow the Content-Type header to be sent
   allowMethods: ['GET', 'POST', 'DELETE'], // Allow only GET, POST, and DELETE requests
