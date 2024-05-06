@@ -41,7 +41,7 @@ const Posts = () => {
       setIsLoading(true);
       try {
         // Fetch data from the fake JSON API
-        const response = await fetch('http://localhost:3000/api/posts');
+        const response = await fetch('https://membersonly-production-d8d9.up.railway.app/api/posts');
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

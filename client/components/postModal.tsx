@@ -19,7 +19,7 @@ export const Post = ({ userData, isOpen, onOpenChange }: { userData: any; isOpen
         return;
       }
       // Make a POST request to post endpoint
-      const response = await axios.post('http://localhost:3000/api/new-post', {
+      const response = await axios.post('https://membersonly-production-d8d9.up.railway.app/api/new-post', {
         creatorName: userData.name,
         creatorEmail: userData.email,
         post: editorValue
