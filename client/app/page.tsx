@@ -19,7 +19,7 @@ export default function Home() {
 				// Set the request configuration
 				const config = {
 					method: 'get',
-					url: 'https://membersonly-production-d8d9.up.railway.app/api/user',
+					url: 'http://localhost:3000/api/user',
 					withCredentials: true, // Include credentials for session authentication
 				};
 

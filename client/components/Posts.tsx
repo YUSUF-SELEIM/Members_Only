@@ -21,7 +21,7 @@ const Posts = () => {
   const itemsPerPage = 2;
 
   useEffect(() => {
-    const socket = io('https://membersonly-production-d8d9.up.railway.app', { transports: ['websocket', 'polling', 'flashsocket'] });
+    const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
 
     // Listen for the 'newPost' event from the server
     socket.on('newPost', (newPost) => {
@@ -41,7 +41,7 @@ const Posts = () => {
       setIsLoading(true);
       try {
         // Fetch data from the fake JSON API
-        const response = await fetch('https://membersonly-production-d8d9.up.railway.app/api/posts');
+        const response = await fetch('http://localhost:3000/api/posts');
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

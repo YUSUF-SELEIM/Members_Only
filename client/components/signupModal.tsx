@@ -21,7 +21,7 @@ export const Signup = ({ isOpen, onOpenChange }: { isOpen: boolean, onOpenChange
     setIsLoading(true);
     try {
       const response = await axios.post(
-        'https://membersonly-production-d8d9.up.railway.app/api/sign-up',
+        'http://localhost:3000/api/sign-up',
         {
           name,
           email,
