@@ -9,6 +9,7 @@ export const Logo: React.FC<IconSvgProps> = ({
 	<Image src="/group.png" alt="" width={size} height={size}/>
 );
 
+
 export const GithubIcon: React.FC<IconSvgProps> = ({
 	size = 24,
 }) => {
