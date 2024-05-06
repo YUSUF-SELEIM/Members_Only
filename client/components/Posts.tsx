@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardHeader, CardBody, Divider, Spinner } from '@nextui-org/react';
+import { CardBody, CardContainer, CardItem } from "../components/ui/3d-card";
 import { Pagination } from "@nextui-org/pagination";
 import { User } from "@nextui-org/user";
 import io from 'socket.io-client';
+import { Spinner, Divider } from '@nextui-org/react';
 
 interface Post {
   id: string;
@@ -100,23 +101,24 @@ const Posts = () => {
         {isLoading ? <Spinner className='my-[50%]' size="lg" /> :
           <div className='flex flex-col space-y-4 justify-center h-[70vh] w-full'>
             {currentItems.map(post => (
-              <Card key={post.id} className="max-w-[40rem] md:w-[30rem] h-[35vh]">
-                <CardHeader className="flex gap-3">
-                  <div className="flex items-center justify-between w-full py-1 md:px-3">
+              <CardContainer key={post.id} className="max-w-[40rem] md:w-[30rem] h-[35vh] p-2">
+                <CardBody className="w-full flex flex-col space-y-4 p-5 relative  hover:shadow-lg dark:hover:shadow-2xl md:w-[50rem] h-full text-foreground box-border bg-content1 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 shadow-medium rounded-large transition-transform-background motion-reduce:transition-none">
+
+                  <CardItem className="flex items-center justify-between w-full py-1 md:px-3">
                     <User
                       name={post.creatorName}
                       description={post.creatorEmail}
                     />
                     <div className="text-xs italic">
-                        <p>Posted {getTimeAgo(post.dateCreated)}</p>
+                      <p>Posted {getTimeAgo(post.dateCreated)}</p>
                     </div>
-                  </div>
-                </CardHeader>
-                <Divider />
-                <CardBody>
-                  <div id='editor' dangerouslySetInnerHTML={{ __html: post.post }} />
+                  </CardItem>
+                  <Divider />
+                  <CardItem className='w-full overflow-auto overflow-x-hidden'>
+                    <div id='editor' dangerouslySetInnerHTML={{ __html: post.post }} />
+                  </CardItem>
                 </CardBody>
-              </Card>
+              </CardContainer>
             ))}
           </div>
         }
