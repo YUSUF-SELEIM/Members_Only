@@ -21,7 +21,7 @@ const Posts = () => {
   const itemsPerPage = 2;
 
   useEffect(() => {
-    const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
+    const socket = io('https://membersonly-production-d8d9.up.railway.app/', { transports: ['websocket', 'polling', 'flashsocket'] });
 
     // Listen for the 'newPost' event from the server
     socket.on('newPost', (newPost) => {
