@@ -20,6 +20,7 @@ router.use(
       sameSite: 'lax', // Set to 'lax' or 'strict' in production
       secure: true, // Set to true in production for HTTPS-only
       httpOnly: true,
+      domain:'https://membersonly-production-d8d9.up.railway.app'
     },
   })
 );
