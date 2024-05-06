@@ -19,7 +19,7 @@ router.use(
       maxAge: 1000 * 60 * 60 * 24, // 1 day
       secure: true, // Set to true in production for HTTPS-only
       sameSite: 'none', 
-      httpOnly:false
+      httpOnly:true
     },
   })
 );
