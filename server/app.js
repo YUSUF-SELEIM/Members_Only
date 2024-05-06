@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 import express from "express";
-import http from "http";
 import { Server } from "socket.io";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -10,12 +9,6 @@ dotenv.config({ path: '../.env' });
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-const server = http.createServer(app, {
-  cors: {
-    origin: "http://localhost:3001"
-  }
-});
-const io = new Server(server);
 
 // middleware
 app.use(express.json());
@@ -31,6 +24,15 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
+
+// routes for api endpoints
+app.use("/api", route);
+
+const server = app.listen(3000, () => {
+  console.log(`Server listening on port ${PORT}...`);
+});
+
+const io = new Server(server);
 // Handle WebSocket connections
 io.on("connection", (socket) => {
   console.log("A user connected");
@@ -39,12 +41,6 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });
-});
-// routes for api endpoints
-app.use("/api", route);
-
-server.listen(3000, () => {
-  console.log(`Server listening on port ${PORT}...`);
 });
 
 export default io ;
