@@ -47,7 +47,7 @@ const Posts = () => {
         }
         const data = await response.json();
         setPosts(data);
-      } catch (error) {
+      } catch (error:any) {
         console.error('Error fetching data:', error.message);
       } finally {
         setIsLoading(false);
