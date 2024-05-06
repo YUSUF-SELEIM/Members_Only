@@ -41,7 +41,7 @@ export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: bo
                     </NextLink>
                 </NavbarBrand>
                 <NavbarItem className="flex gap-2">
-                    <Link isExternal href="" aria-label="Github">
+                    <Link isExternal href="https://github.com/YUSUF-SELEIM" aria-label="Github">
                         <GithubIcon className="text-default-500" />
                     </Link>
                     <ThemeSwitch />
