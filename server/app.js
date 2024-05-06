@@ -13,12 +13,7 @@ const app = express();
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: 'https://members-only-nu.vercel.app/', // Allow requests from this origin
-  credentials: true, // Allow credentials (cookies) to be included
-  allowedHeaders: ['Content-Type','Set-Cookie'], // Allow the Content-Type header to be sent
-  allowMethods: ['GET', 'POST', 'DELETE'], // Allow only GET, POST, and DELETE requests
-}));
+app.use(cors());
 
 // connect to MongoDB
 mongoose
