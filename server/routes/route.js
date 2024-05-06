@@ -19,7 +19,7 @@ router.use(
       maxAge: 1000 * 60 * 60 * 24, // 1 day
       sameSite: 'lax', // Set to 'lax' or 'strict' in production
       secure: true, // Set to true in production for HTTPS-only
-      httpOnly: true,
+      httpOnly: false,
       domain:'https://membersonly-production-d8d9.up.railway.app'
     },
   })
