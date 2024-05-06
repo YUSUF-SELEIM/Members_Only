@@ -37,7 +37,7 @@ export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: bo
                 <NavbarBrand>
                     <NextLink className="flex items-center justify-start gap-1" href="/">
                         <Logo />
-                        <p className="font-bold text-inherit">MembersOnly</p>
+                        <p className="font-bold text-inherit">Members<span className='text-blue-700'>Only</span></p>
                     </NextLink>
                 </NavbarBrand>
                 <NavbarItem className="flex gap-2">
