@@ -18,8 +18,8 @@ router.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // 1 day
       httpOnly: true, // Set to true for improved security
-      secure: false, // Set to true in production for HTTPS-only
-      sameSite: 'lax', // Set to 'lax' or 'strict' in production
+      secure: true, // Set to true in production for HTTPS-only
+      sameSite: 'none', 
     },
   })
 );
