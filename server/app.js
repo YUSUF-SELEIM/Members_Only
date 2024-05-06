@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(
-  {credentials: true, origin: 'https://members-only-nu.vercel.app/'}
+  {credentials: true, origin: 'https://members-only-nu.vercel.app'}
 ));
 
 // connect to MongoDB
