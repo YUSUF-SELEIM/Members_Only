@@ -43,7 +43,7 @@ io.on("connection", (socket) => {
 // routes for api endpoints
 app.use("/api", route);
 
-server.listen(PORT, () => {
+server.listen(3000, () => {
   console.log(`Server listening on port ${PORT}...`);
 });
 
