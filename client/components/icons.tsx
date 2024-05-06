@@ -5,11 +5,8 @@ import Image from 'next/image';
 
 export const Logo: React.FC<IconSvgProps> = ({
 	size = 36,
-	width,
-	height,
-	...props
 }) => (
-	<Image src="/group.png" alt="" width={width || size} height={height || size} {...props} />
+	<Image src="/group.png" alt="" width={size} height={size}/>
 );
 
 export const DiscordIcon: React.FC<IconSvgProps> = ({
