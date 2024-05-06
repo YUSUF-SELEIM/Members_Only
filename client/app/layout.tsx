@@ -25,6 +25,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
+			<title>MembersOnly</title>
 			<body
 				className={clsx(
 					"w-full bg-background font-sans antialiased",
