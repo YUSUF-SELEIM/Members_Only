@@ -1,6 +1,6 @@
 import Post from "../models/Post.js";
 import asyncHandler from "express-async-handler";
-import { io } from "../app.js";
+import io from "../app.js";
 
 // Retrieve posts from the database
 export const getPosts = async (req, res) => {

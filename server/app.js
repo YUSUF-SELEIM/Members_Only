@@ -47,4 +47,4 @@ server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
 });
 
-export { io };
+export default io ;
