@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react';
 import axios from 'axios';
 import dynamic from 'next/dynamic'; // Import dynamic from next/dynamic
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Spinner } from "@nextui-org/react";
-import QuillEditor from "react-quill";
 import "react-quill/dist/quill.snow.css";
+const QuillEditor = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Post = ({ userData, isOpen, onOpenChange }: { userData: any; isOpen: boolean; onOpenChange: (isOpen: boolean) => void }) => {
   const [editorValue, setEditorValue] = useState(""); // State to store editor value
