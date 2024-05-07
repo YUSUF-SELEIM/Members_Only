@@ -9,12 +9,13 @@ dotenv.config({ path: '../.env' });
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+app.set('trust proxy', 1);
 
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(
-  {credentials: true, origin: 'http://localhost:3001'}
+  {credentials: true, origin: 'https://members-only-eosin.vercel.app'}
 ));
 
 // connect to MongoDB

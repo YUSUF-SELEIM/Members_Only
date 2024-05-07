@@ -15,7 +15,7 @@ export const Navbar = ({ userData, isLoggedIn }: { userData: any; isLoggedIn: bo
     const handleLogout = async () => {
         try {
             // Make a POST request to logout endpoint
-            const response = await axios.delete('http://localhost:3000/api/log-out', {
+            const response = await axios.delete('https://membersonly-production-4ea6.up.railway.app/api/log-out', {
                 withCredentials: true,
             });
 
