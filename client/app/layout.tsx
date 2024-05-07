@@ -5,7 +5,6 @@ import { Providers } from "./providers";
 import clsx from "clsx";
 
 export const metadata: Metadata = {
-
 	themeColor: [
 		{ media: "(prefers-color-scheme: light)", color: "white" },
 		{ media: "(prefers-color-scheme: dark)", color: "black" },
@@ -25,6 +24,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
+			<meta content="user-scalable=no"/>
 			<title>MembersOnly</title>
 			<body
 				className={clsx(

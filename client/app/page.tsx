@@ -60,11 +60,11 @@ export default function Home() {
 		<div className="flex flex-col items-center justify-center w-full h-full">
 			{isLoading ? <Spinner size="lg" /> :
 				(
-					<div className="flex flex-col items-center justify-center w-full h-full gap-4">
+					<div className="flex flex-col items-center justify-between w-full h-full">
 						<Navbar userData={userData} isLoggedIn={isLoggedIn} />
-						<main className="flex flex-col items-center justify-center w-full h-full gap-4 md:flex-row ">
+						<main className="flex flex-col items-center justify-between w-full h-full md:flex-row ">
 							{!isLoggedIn && (
-								<div className="flex flex-col items-center justify-center space-y-4 mb-32 h-[calc(100dvh)] w-full md:h-full mt-32 space-y- md:mt-0">
+								<div className="flex flex-col items-center justify-center w-full mt-32 mb-32 space-y-4 md:h-full space-y- md:mt-0">
 									<h1 className="text-4xl font-bold text-center">Welcome to Members<span className='text-blue-700'>Only</span></h1>
 									<p className="text-lg text-center">
 										An exclusive community for members only
@@ -82,8 +82,8 @@ export default function Home() {
 									<Signup isOpen={isSignupOpen} onOpenChange={onSignupOpenChange} />
 								</div>
 							)}
-							<div className="flex flex-col items-center justify-between w-full h-[calc(100dvh)] md:h-full">
-								<Posts />
+							<div className="flex flex-col items-center justify-between w-full h-full">
+								<Posts isLoggedIn={isLoggedIn}/>
 							</div>
 						</main>
 					</div>

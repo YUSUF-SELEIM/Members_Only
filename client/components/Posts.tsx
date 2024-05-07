@@ -13,11 +13,12 @@ interface Post {
   dateCreated: Date;
 }
 
-const Posts = () => {
+const Posts = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [serverTime, setServerTime] = useState(new Date());
+  const [paginationClicks, setPaginationClicks] = useState(0); // Track pagination clicks
   const itemsPerPage = 2;
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const Posts = () => {
         }
         const data = await response.json();
         setPosts(data);
-      } catch (error:any) {
+      } catch (error: any) {
         console.error('Error fetching data:', error.message);
       } finally {
         setIsLoading(false);
@@ -65,6 +66,7 @@ const Posts = () => {
   const handlePageChange = (page: number) => {
     console.log('Page changed:', page);
     setCurrentPage(page);
+    setPaginationClicks((prevClicks) => prevClicks + 1);
   };
   const getTimeAgo = (dateCreated: string | number | Date) => {
     const postTime = new Date(dateCreated).getTime();
@@ -95,27 +97,27 @@ const Posts = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center space-y-4'>
-      <h1>Posts</h1>
-      <div className='flex flex-col justify-center items-center h-[70vh] w-full'>
-        {isLoading ? <Spinner className='my-[50%]' size="lg" /> :
-          <div className='flex flex-col space-y-4 justify-center h-[70vh] w-full'>
+    <div className='flex flex-col items-center justify-between md:h-full '>
+      <div className='flex flex-col justify-center items-center md:h-[70vh] h-full w-full space-y-4'>
+        {isLoading ? <Spinner className='my-[90%]' size="lg" /> :
+          <div className='md:mt-8'>
             {currentItems.map(post => (
-              <CardContainer key={post.id} className="max-w-[40rem] md:w-[30rem] h-[35vh] p-2">
-                <CardBody className="w-full flex flex-col space-y-4 p-5 relative  hover:shadow-lg dark:hover:shadow-2xl md:w-[50rem] h-full text-foreground box-border bg-content1 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 shadow-medium rounded-large transition-transform-background motion-reduce:transition-none">
-
-                  <CardItem className="flex items-center justify-between w-full py-1 md:px-3">
+              <CardContainer key={post.id} className="max-w-[40rem] md:w-[35rem] w-[22rem] md:h-[35vh] h-[14rem] px-4 md:p-3 p-2">
+                <CardBody className="w-full flex flex-col space-y-4 md:p-5 p-2 py-5 relative hover:shadow-lg dark:hover:shadow-2xl h-full text-foreground box-border bg-content1 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 shadow-medium rounded-large transition-transform-background motion-reduce:transition-none">
+                  <CardItem className="flex items-center justify-between w-full md:px-3">
                     <User
                       name={post.creatorName}
-                      description={post.creatorEmail}
+                      description={isLoggedIn ? post.creatorEmail : 'Member'}
                     />
-                    <div className="text-xs italic">
-                      <p>Posted {getTimeAgo(post.dateCreated)}</p>
+                    <div className="md:text-sm italic text-[12px]">
+                      <p>{getTimeAgo(post.dateCreated)}</p>
                     </div>
                   </CardItem>
                   <Divider />
                   <CardItem className='w-full overflow-auto overflow-x-hidden'>
-                    <div id='editor' dangerouslySetInnerHTML={{ __html: post.post }} />
+                    {!isLoggedIn ? <p className='blur-sm'><div id='editor' dangerouslySetInnerHTML={{ __html: post.post }} /></p> :
+                      <div id='editor' dangerouslySetInnerHTML={{ __html: post.post }} />
+                    }
                   </CardItem>
                 </CardBody>
               </CardContainer>
@@ -123,12 +125,17 @@ const Posts = () => {
           </div>
         }
       </div>
-      <Pagination
-        total={Math.ceil(posts.length / itemsPerPage)}
-        initialPage={currentPage}
-        onChange={handlePageChange} // Use the onClick event to handle page changes
-      />
+      <div className='pt-6 md:pb-4'>
+        <Pagination
+          total={Math.ceil(posts.length / itemsPerPage)}
+          onChange={handlePageChange} // Use the onClick event to handle page changes
+          initialPage={1}
+          defaultValue={1}
+          defaultChecked
+        />
+      </div>
     </div>
+
   );
 };
 
