@@ -15,7 +15,7 @@ app.set('trust proxy', 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(
-  {credentials: true, origin: 'https://members-only-eosin.vercel.app','http://localhost:3000/'}
+  {credentials: true, origin: ['https://members-only-eosin.vercel.app','http://localhost:3000']}
 ));
 
 // connect to MongoDB
