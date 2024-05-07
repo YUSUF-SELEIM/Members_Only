@@ -98,7 +98,7 @@ const Posts = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
   return (
     <div className='flex flex-col items-center justify-between h-full '>
-      <div className='flex flex-col justify-center items-center md:h-[70vh] h-full w-full space-y-4'>
+      <div className='flex flex-col justify-center items-center md:h-[70vh] h-[60vh] w-full space-y-4'>
         {isLoading ? <Spinner className='my-auto' size="lg" /> :
           <div className='md:mt-8'>
             {currentItems.map(post => (
