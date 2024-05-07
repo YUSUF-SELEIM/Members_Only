@@ -125,7 +125,7 @@ const Posts = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           </div>
         }
       </div>
-      <div className='pt-6 md:pb-4'>
+      <div className='mt-12 md:pb-4'>
         <Pagination
           total={Math.ceil(posts.length / itemsPerPage)}
           onChange={handlePageChange} // Use the onClick event to handle page changes
