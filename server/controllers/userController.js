@@ -78,7 +78,7 @@ passport.use(
         console.log("Email is  ", username);
         console.log("Password is  ", password);
         try {
-            const user = await User.findOne({ email: username });
+            const user = await User.findOne({ email: { $regex: new RegExp('^' + username + '$', 'i') } });
             console.log("User is  ", user);
             if (!user) {
                 return done(null, false, {
