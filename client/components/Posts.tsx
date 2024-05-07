@@ -97,9 +97,9 @@ const Posts = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-between md:h-full '>
+    <div className='flex flex-col items-center justify-between h-full '>
       <div className='flex flex-col justify-center items-center md:h-[70vh] h-full w-full space-y-4'>
-        {isLoading ? <Spinner className='my-[90%]' size="lg" /> :
+        {isLoading ? <Spinner className='my-auto' size="lg" /> :
           <div className='md:mt-8'>
             {currentItems.map(post => (
               <CardContainer key={post.id} className="max-w-[40rem] md:w-[35rem] w-[22rem] md:h-[35vh] h-[14rem] px-4 md:p-3 p-2">
@@ -125,7 +125,7 @@ const Posts = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           </div>
         }
       </div>
-      <div className='mt-12 md:pb-4'>
+      <div className='flex flex-col justify-end md:pb-4'>
         <Pagination
           total={Math.ceil(posts.length / itemsPerPage)}
           onChange={handlePageChange} // Use the onClick event to handle page changes
