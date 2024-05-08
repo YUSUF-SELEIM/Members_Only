@@ -33,6 +33,7 @@ Welcome to MembersOnly, a vibrant platform empowering users to share messages se
 - Axios: Employed for making HTTP requests to the backend.
 - TailwindCSS : Styled by tailwind classes
 - Aceternity : UI Components
+- React-Quill-Editor: a WYSIWYG Editor Used For Posting 
 
 ## Deployment
 
@@ -45,5 +46,5 @@ Backend is Deployed in Railway
 
 ## P.S
 
-since i have deployed my backend logic on railway as it supports web sockets , my free trial may end by the time you see my project so just see the video , Thanks
+since i have deployed my backend logic on railway as it supports web sockets , my free trial may end by the time you see my project so just see the [video](https://www.youtube.com/watch?v=9N_lZ8CeLBU) , Thanks
 may be in the future i will use nextJs SWR i read that it polls real time updates and it is supported in vercel
