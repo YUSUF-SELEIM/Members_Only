@@ -1,15 +1,15 @@
 import Post from "../models/Post.js";
 import asyncHandler from "express-async-handler";
-import io from "../app.js";
+// import io from "../app.js";
 
 // Retrieve posts from the database
 export const getPosts = async (req, res) => {
   try {
     const posts = await Post.find().sort({ dateCreated: -1 });
-    // Emit serverTime event periodically
-    setInterval(() => {
-      io.emit("serverTime", { serverTime: new Date() });
-    }, 1000); // Emit every second
+    // // Emit serverTime event periodically
+    // setInterval(() => {
+    //   io.emit("serverTime", { serverTime: new Date() });
+    // }, 1000); // Emit every second
 
     console.log("Retrieved posts successfully");
     res.send(posts);
@@ -31,9 +31,9 @@ export const savePost = asyncHandler(async (req, res, next) => {
     });
     console.log("Saved successfully");
 
-    // Broadcast the new post to Socket.IO clients
-    io.emit("newPost", newPost);
-    console.log("Emitted new post");
+    // // Broadcast the new post to Socket.IO clients
+    // io.emit("newPost", newPost);
+    // console.log("Emitted new post");
 
     res.status(200).send(newPost);
   } catch (error) {

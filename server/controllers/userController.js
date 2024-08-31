@@ -201,8 +201,8 @@ export const logOut = asyncHandler(async (req, res, next) => {
         // Clear the session cookie
         res.clearCookie('connect.sid', {
             httpOnly: true, // Set to true for improved security
-            secure: false, // Set to true in production for HTTPS-only
-            sameSite: 'lax', // Set to 'lax' or 'strict' in production });
+            secure: true, // Set to true in production for HTTPS-only
+            sameSite: 'none', // Set to 'lax' or 'strict' in production });
         });
         // Respond with a success message or redirect to another page
         res.status(200).send({ message: 'Logout successful' });

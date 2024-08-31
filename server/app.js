@@ -28,9 +28,9 @@ mongoose
 // routes for api endpoints
 app.use("/api", route);
 
-const server = app.listen(4000, () => {
-  console.log(`Server listening on port ${PORT}...`);
-});
+// const server = app.listen(4000, () => {
+//   console.log(`Server listening on port ${PORT}...`);
+// });
 
 // const io = new Server(server);
 // // Handle WebSocket connections
@@ -43,4 +43,4 @@ const server = app.listen(4000, () => {
 //   });
 // });
 
-export default server ;
+// export default server ;
