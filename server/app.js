@@ -6,7 +6,7 @@ import cors from "cors";
 import route from "./routes/route.js";
 
 dotenv.config();
-const PORT = process.env.PORT || 4000;
+// const PORT = process.env.PORT || 4000;
 
 const app = express();
 app.set('trust proxy', 1);
@@ -43,4 +43,4 @@ app.use("/api", route);
 //   });
 // });
 
-// export default server ;
+export default app ;
