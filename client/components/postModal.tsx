@@ -32,6 +32,7 @@ export const Post = ({ userData, isOpen, onOpenChange }: { userData: any; isOpen
       if (response.status === 200) {
         handleModalOpenChange(false);
         console.log('posted successful');
+        window.location.reload();
       } else {
         console.error('Posting failed:', response.statusText);
       }
