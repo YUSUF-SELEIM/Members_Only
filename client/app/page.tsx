@@ -32,7 +32,7 @@ export default function Home() {
 					// Extract the user data from the response and set it in state
 					setUserData(response.data);
 					setIsLoggedIn(true);
-					console.log('User data:', response.data);
+					// console.log('User data:', response.data);
 				} else {
 					// Handle unexpected response status
 					console.error('Unexpected response status:', response.status);
