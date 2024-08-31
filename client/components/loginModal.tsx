@@ -15,7 +15,7 @@ export const Login = ({setIsLoggedIn, isOpen, onOpenChange }: {setIsLoggedIn: (i
     setIsLoading(true);
     try {
       const response = await axios.post(
-        'https://membersonly-production-4ea6.up.railway.app/api/log-in',
+        `${process.env.NEXT_PUBLIC_BACK_END_URL}/api/log-in`,
         {
           username,
           password,

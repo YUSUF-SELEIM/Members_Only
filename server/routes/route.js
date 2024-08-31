@@ -6,7 +6,7 @@ import passport from 'passport';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 
-dotenv.config({path: '../.env'});
+dotenv.config();
 const router = express.Router();
 
 router.use(

@@ -21,28 +21,28 @@ const Posts = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const [paginationClicks, setPaginationClicks] = useState(0); // Track pagination clicks
   const itemsPerPage = 2;
 
-  useEffect(() => {
-    const socket = io('https://membersonly-production-4ea6.up.railway.app', { transports: ['websocket', 'polling', 'flashsocket'] });
+  // useEffect(() => {
+  //   const socket = io('https://membersonly-production-4ea6.up.railway.app', { transports: ['websocket', 'polling', 'flashsocket'] });
 
-    // Listen for the 'newPost' event from the server
-    socket.on('newPost', (newPost) => {
-      // Update the posts state with the new post
-      setPosts((prevPosts) => [newPost, ...prevPosts]);
-    });
-    socket.on('serverTime', (time) => {
-      setServerTime(new Date(time));
-    });
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  //   // Listen for the 'newPost' event from the server
+  //   socket.on('newPost', (newPost) => {
+  //     // Update the posts state with the new post
+  //     setPosts((prevPosts) => [newPost, ...prevPosts]);
+  //   });
+  //   socket.on('serverTime', (time) => {
+  //     setServerTime(new Date(time));
+  //   });
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
         // Fetch data from the fake JSON API
-        const response = await fetch('https://membersonly-production-4ea6.up.railway.app/api/posts');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/posts`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

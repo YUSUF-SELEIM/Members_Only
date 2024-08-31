@@ -19,7 +19,7 @@ export default function Home() {
 				// Set the request configuration
 				const config = {
 					method: 'get',
-					url: 'https://membersonly-production-4ea6.up.railway.app/api/user',
+					url: `${process.env.NEXT_PUBLIC_BACK_END_URL}/api/user`,
 					withCredentials: true, // Include credentials for session authentication
 				};
 
