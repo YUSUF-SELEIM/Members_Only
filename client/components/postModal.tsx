@@ -30,9 +30,9 @@ export const Post = ({ userData, isOpen, onOpenChange }: { userData: any; isOpen
 
       // Check if the logout was successful
       if (response.status === 200) {
+        window.location.reload();
         handleModalOpenChange(false);
         console.log('posted successful');
-        window.location.reload();
       } else {
         console.error('Posting failed:', response.statusText);
       }
