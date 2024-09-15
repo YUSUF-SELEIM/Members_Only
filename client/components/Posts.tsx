@@ -100,7 +100,7 @@ const Posts = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     <div className='flex flex-col items-center justify-between h-full '>
       <div className='flex flex-col justify-center items-center md:h-[70vh] h-[60vh] w-full space-y-4'>
         {isLoading ? <Spinner className='my-auto' size="lg" /> :
-          <div className='md:mt-8'>
+          <div className='mt-24 md:mt-8'>
             {currentItems.map(post => (
               <CardContainer key={post.id} className="max-w-[40rem] md:w-[35rem] w-[22rem] md:h-[35vh] h-[14rem] px-4 md:p-3 p-2">
                 <CardBody className="w-full flex flex-col space-y-4 md:p-5 p-2 py-5 relative hover:shadow-lg dark:hover:shadow-2xl h-full text-foreground box-border bg-content1 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 shadow-medium rounded-large transition-transform-background motion-reduce:transition-none">
