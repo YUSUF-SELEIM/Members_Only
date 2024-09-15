@@ -58,8 +58,8 @@ export default function Home() {
 
 	const handleTestUserLogin = async () => {
 		try {
-			const response = await axios.post(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/login`, {
-				email: 'MembersOnly@Admin.com',
+			const response = await axios.post(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/log-in`, {
+				username: 'MembersOnly@Admin.com',
 				password: '12345678'
 			}, {
 				withCredentials: true
