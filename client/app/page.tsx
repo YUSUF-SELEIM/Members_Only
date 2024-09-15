@@ -56,6 +56,24 @@ export default function Home() {
 	const { onOpen: onLoginOpen, isOpen: isLoginOpen, onOpenChange: onLoginOpenChange } = useDisclosure();
 	const { onOpen: onSignupOpen, isOpen: isSignupOpen, onOpenChange: onSignupOpenChange } = useDisclosure();
 
+	const handleTestUserLogin = async () => {
+		try {
+			const response = await axios.post(`${process.env.NEXT_PUBLIC_BACK_END_URL}/api/login`, {
+				email: 'MembersOnly@Admin.com',
+				password: '12345678'
+			}, {
+				withCredentials: true
+			});
+
+			if (response.status === 200) {
+				setIsLoggedIn(true);
+				setUserData(response.data.user);
+			}
+		} catch (error) {
+			console.error('Error logging in test user:', error);
+		}
+	};
+
 	return (
 		<div className="flex flex-col items-center justify-center w-full h-full">
 			{isLoading ? <Spinner size="lg" /> :
@@ -76,6 +94,9 @@ export default function Home() {
 										</Button>
 										<Button onPress={onSignupOpen} color="primary" variant="ghost">
 											Sign up
+										</Button>
+										<Button onPress={handleTestUserLogin} color="secondary" variant="ghost">
+											Test User Login
 										</Button>
 									</div>
 									<Login setIsLoggedIn={setIsLoggedIn} isOpen={isLoginOpen} onOpenChange={onLoginOpenChange} />
